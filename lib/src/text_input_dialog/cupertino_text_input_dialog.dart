@@ -121,6 +121,10 @@ class _CupertinoTextInputDialogState extends State<CupertinoTextInputDialog> {
     }
 
     final validationMessage = _validationMessage;
+    var theme = Theme.of(context);
+
+    var isLight = theme.brightness == Brightness.light;
+
     return WillPopScope(
       onWillPop: widget.onWillPop,
       child: CupertinoAlertDialog(
@@ -150,6 +154,8 @@ class _CupertinoTextInputDialogState extends State<CupertinoTextInputDialog> {
                     isTopRounded: i == 0,
                     isBottomRounded: i == _textControllers.length - 1,
                   ),
+                  style:
+                      TextStyle(color: isLight ? Colors.black : Colors.white),
                   textInputAction: isLast ? null : TextInputAction.next,
                   onSubmitted: isLast && widget.autoSubmit
                       ? (_) => submitIfValid()
